@@ -155,6 +155,17 @@
 	
 }
 
+- (void)testCrashAtEmptyNodeBeforeDivWithiOS6Attributes
+{
+	NSString *html = @"<div><i></i><div></div></div>;";
+	NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
+	NSDictionary *options = @{DTUseiOS6Attributes: @(YES)};
+	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data
+																	  options:options
+														   documentAttributes:NULL];
+	XCTAssert(string != nil);
+}
+
 /*
 - (void)testAttributedStringColorToHTML
 {
